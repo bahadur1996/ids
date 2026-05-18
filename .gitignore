@@ -6,3 +6,8 @@
 *.tar.gz
 *.zip
 Log Mining/
+
+# Ignore everything in subfolders except .ipynb files
+**/*
+!**/
+!**/*.ipynb

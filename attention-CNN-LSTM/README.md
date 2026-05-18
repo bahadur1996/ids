@@ -19,7 +19,7 @@
 |----------|-------|
 | Total records | ~4 million network traffic flows |
 | Files | 74 CSV files (~16 GB total) |
-| Features | 34 network features |
+| Features | 35 network features |
 | Source | University of New South Wales (UNSW) |
 | URL | https://research.unsw.edu.au/projects/bot-iot-dataset |
 

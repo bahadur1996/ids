@@ -30,7 +30,7 @@ Implementation of the paper *"Deep learning for network security: an Attention-C
 
 ### Model Pipeline
 ```
-Raw traffic flows (93 features)
+Raw traffic flows (35 features)
     → Preprocessing & normalization
     → CNN layers           (spatial feature extraction)
     → LSTM layers          (temporal sequence modeling)
@@ -48,12 +48,13 @@ Raw traffic flows (93 features)
 | `05_evaluation.ipynb` | Metrics, confusion matrix, plots *(to be created)* |
 
 ### Dataset: Bot-IoT (UNSW 2018)
-- **Location:** `data/raw/` — 4 CSV files, ~935 MB total, ~4 million records, 93 columns
-- **Label columns:** `Attack` (binary), `Category` (attack family), `Subcategory` (specific type)
+- **Location:** `data/raw/` — 4 CSV files, ~935 MB total, ~4 million records, **35 columns**
+- **Label columns:** `attack` (binary 0/1), `category` (attack family), `subcategory` (specific type) — all lowercase
 - **Class imbalance:** heavily skewed toward attack traffic — requires stratified sampling or class weights
-- **Feature metadata:** `data/Features Explanation/Total Feature Description.xlsx`
+- **Feature names file:** `data/raw/OneDrive_1_5-18-2026/UNSW_2018_IoT_Botnet_Dataset_Feature_Names.csv` — 35 column names as headers, no data rows
 
 ### Key Data Notes
-- The raw CSVs have **no header row** — the first row is data, not column names. Column names must be assigned manually from the feature description Excel file.
-- Many columns have large amounts of missing values; dropping or imputing is required in preprocessing.
+- The raw CSVs have **no header row** — load with `pd.read_csv(..., header=None, names=column_names)` where `column_names` comes from `UNSW_2018_IoT_Botnet_Dataset_Feature_Names.csv` (strip trailing spaces with `.strip()`).
+- `data/Features Explanation/Total Feature Description.xlsx` describes a **different 46-feature version** of the dataset and does NOT match these CSV files — do not use it for column names.
+- Columns `smac`, `dmac`, `soui`, `doui`, `sco`, `dco` (MAC/OUI fields) are present in the CSVs but frequently NaN for non-Ethernet traffic.
 - Processed artifacts go in `data/processed/`; model checkpoints in `models/`; plots/metrics in `results/`.

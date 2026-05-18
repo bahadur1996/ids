@@ -12,3 +12,6 @@ Log Mining/
 !**/
 !**/*.ipynb
 !**/*.md
+
+# Ignore all files inside loghub
+**/loghub/**

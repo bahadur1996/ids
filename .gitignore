@@ -2,3 +2,7 @@
 .git/
 .idea/
 *.csv
+*.log
+*.tar.gz
+*.zip
+Log Mining/
